@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "name-sorter": {
+      "commandName": "Project",
+      "commandLineArgs": "$(SolutionDir)/TestData/unsorted-names-list.txt"
+    }
+  }
+}
