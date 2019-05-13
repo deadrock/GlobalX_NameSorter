@@ -7,25 +7,33 @@ namespace name_sorter_console
     {
         private const string OutputPath = "sorted-names-list.txt";
 
+        /// <summary>
+        /// Reads a file containing names (one name per line) Sorts them and outputs to new file and to the console.
+        /// </summary>
+        /// <param name="args">args[0] should be the name of the file to read</param>
+        /// <returns></returns>
         static int Main(string[] args)
         {
-            if ( args.Length != 1 || args[0] == "/?")
+            if (args.Length != 1 || args[0] == "/?" || args[0].Length == 0 )
             {
                 Usage();
                 return -2;
             }
 
-            var allNames = new FullnameCollection(args[0]);
+            var inputFilepath = args[0];  // 
 
-            // get each name (sorted by Lastname, Givennames) and output each line to console and to file.
-            using (var outputStream = new System.IO.StreamWriter(OutputPath))
-            {
-                foreach (var name in allNames.ByLastnameGivenname)
-                {
-                    Console.WriteLine(name.ToString());
-                    outputStream.WriteLine(name.ToString());
-                }
-            }
+            var service = new FullnameCollectionService();
+
+            // Load the data
+            var allNames = service.LoadFromFile(args[0]);
+
+            // sort the data
+            allNames = service.SortByLastnameGivenname(allNames);
+
+            // output the data
+            service.WriteToStream(allNames, Console.Out);
+            service.WriteToFile(allNames, OutputPath);
+                       
             return 0;
         }
 

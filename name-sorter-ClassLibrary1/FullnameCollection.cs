@@ -9,33 +9,21 @@ namespace name_sorter_ClassLibrary1
     /// Holds a collection of Fullname objects and can return entries (of type Fullname) sorted by Lastname, Givennames
     /// Can be created from a file
     /// </summary>
-    public class FullnameCollection
-    {
-        List<Fullname> _names = new List<Fullname>();
-
-        /// <param name="path">Path to file to read a list of names from</param>
-        public FullnameCollection(string path)
+    public class FullnameCollection : List<Fullname>
+    {     
+        /// <summary>
+        /// Create an empty collection of Fullname
+        /// </summary>
+        public FullnameCollection()
         {
-            foreach (string line in File.ReadLines(path))
-            {
-                _names.Add(new Fullname(line));
-            }
         }
 
         /// <summary>
-        ///  Return all the Fullname objects not sorted
+        /// Create new FullnameCollection from List of Fullname
         /// </summary>
-        public IEnumerable<Fullname> Names { get { return _names; } }
-
-        /// <summary>
-        /// Return all the Fullname objects sorted by Lastname, Givennames
-        /// </summary>
-        public IEnumerable<Fullname> ByLastnameGivenname
+        /// <param name="sortedNames"></param>
+        public FullnameCollection(List<Fullname> names) : base(names)
         {
-            get
-            {
-                return _names.OrderBy(x => x.Lastname + x.Givennames);
-            }
-        }
+        }      
     }
 }
