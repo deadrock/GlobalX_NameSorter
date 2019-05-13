@@ -7,7 +7,7 @@ using System.Linq;
 namespace UnitTestProject1
 {
     [TestClass]
-    public class UnitTest__FullnameCollection__LoadFromFile
+    public class UnitTest__FullnameCollectionService__LoadFromFile
     {
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
@@ -39,7 +39,7 @@ namespace UnitTestProject1
     }
 
     [TestClass]
-    public class UnitTest__FullnameCollection__ByLastnameGivenname
+    public class UnitTest__FullnameCollectionService__SortByLastnameGivenname
     {
         private const string LOWEST = "alpha alpha alpha alpha";
         private const string HIGHEST = "zulu zulu zulu zulu";
@@ -87,7 +87,7 @@ namespace UnitTestProject1
     }
 
     [TestClass]
-    public class UnitTest__FullnameCollection__WriteToFile
+    public class UnitTest__FullnameCollectionService__WriteToFile
     {
         private const string LOWEST = "alpha alpha alpha alpha";
         private const string HIGHEST = "zulu zulu zulu zulu";
